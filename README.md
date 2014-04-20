@@ -2,7 +2,7 @@
 This is a page that contains an installation instruction for iOS, Android and Server. If you have any questions, contact us.
 
 ### iOS Setup Instruction
-Before running the project, you have to set up the environment. We are using **Cocoapods** to manage librarys for the iOS app. Open the terminal and input following command:
+Before running the project, you have to set up the environment. We are using [Cocopods](http://cocoapods.org) to manage librarys for the iOS app. Open the terminal and input following command:
 
 ```
 $ sudo gem install cocoapods
