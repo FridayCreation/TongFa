@@ -34,9 +34,30 @@
 <p>This is a page that contains an installation instruction for iOS, Android and Server. If you have any questions, contact us.</p>
 
 <h3>
+<a name="default-users" class="anchor" href="#default-users"><span class="octicon octicon-link"></span></a>Default users</h3>
+
+<h5>
+<a name="admin" class="anchor" href="#admin"><span class="octicon octicon-link"></span></a>Admin</h5>
+
+<p>username: tongfa<br>
+password: 123</p>
+
+<h5>
+<a name="%E9%80%81%E8%B2%A8%E4%B8%AD%E5%BF%83" class="anchor" href="#%E9%80%81%E8%B2%A8%E4%B8%AD%E5%BF%83"><span class="octicon octicon-link"></span></a>送貨中心:</h5>
+
+<p>username: delivery<br>
+password: 123</p>
+
+<h5>
+<a name="%E6%8F%90%E8%B2%A8%E7%AB%99" class="anchor" href="#%E6%8F%90%E8%B2%A8%E7%AB%99"><span class="octicon octicon-link"></span></a>提貨站</h5>
+
+<p>username: pickuper<br>
+password: 123</p>
+
+<h3>
 <a name="ios-setup-instruction" class="anchor" href="#ios-setup-instruction"><span class="octicon octicon-link"></span></a>iOS Setup Instruction</h3>
 
-<p>Before running the project, you have to set up the environment. We are using <strong>Cocoapods</strong> to manage librarys for the iOS app. Open the terminal and input following command:</p>
+<p>Before running the project, you have to set up the environment. We are using <a href="http://cocoapods.org">Cocopods</a> to manage librarys for the iOS app. Open the terminal and input following command:</p>
 
 <pre><code>$ sudo gem install cocoapods
 </code></pre>
@@ -54,6 +75,97 @@ $ pod install
 
 <h3>
 <a name="server" class="anchor" href="#server"><span class="octicon octicon-link"></span></a>Server</h3>
+
+<p>To make the server execute properly, you have to install the dependencies. </p>
+
+<pre><code>$ npm install
+$ npm install -g bower
+$ npm install -g sequelize
+$ bower install
+</code></pre>
+
+<p>After install, you can start the server by <code>node server.js</code> command.</p>
+
+<h4>
+<a name="datebase-setup" class="anchor" href="#datebase-setup"><span class="octicon octicon-link"></span></a>Datebase setup</h4>
+
+<pre><code>node seed/sync.js &amp;&amp; node seed/seed.js
+</code></pre>
+
+<h4>
+<a name="rebuild-indexes" class="anchor" href="#rebuild-indexes"><span class="octicon octicon-link"></span></a>Rebuild Indexes</h4>
+
+<pre><code>sequelize -m -u # rollback
+sequelize -m
+</code></pre>
+
+<h4>
+<a name="api-explorer" class="anchor" href="#api-explorer"><span class="octicon octicon-link"></span></a>API explorer</h4>
+
+<h5>
+<a name="%E7%8D%B2%E5%8F%96%E7%9B%AE%E9%8C%84-%E5%9C%B0%E9%BB%9E%E8%B3%87%E6%96%99" class="anchor" href="#%E7%8D%B2%E5%8F%96%E7%9B%AE%E9%8C%84-%E5%9C%B0%E9%BB%9E%E8%B3%87%E6%96%99"><span class="octicon octicon-link"></span></a>獲取目錄, 地點資料</h5>
+
+<p>get <code>/api/v1/metadata</code>:</p>
+
+<pre><code>{
+"success": true,
+"doc": {
+    "states": [
+        {
+            "id": 1,
+            "name": "到倉"
+        },
+        {
+            "id": 2,
+            "name": "發貨"
+        },
+        {
+            "id": 3,
+            "name": "到提貨站"
+        },
+        {
+            "id": 4,
+            "name": "已提貨"
+        }
+    ],
+    "locations": [
+        {
+            "id": 2,
+            "name": "氹仔"
+        },
+        {
+            "id": 1,
+            "name": "澳門"
+        }
+    ],
+    "categories": [
+        {
+            "id": 2,
+            "name": "家具"
+        },
+        {
+            "id": 1,
+            "name": "衣服"
+        }
+    ]
+    }
+}
+</code></pre>
+
+<h5>
+<a name="%E7%99%BB%E8%A8%98%E8%B2%A8%E7%89%A9" class="anchor" href="#%E7%99%BB%E8%A8%98%E8%B2%A8%E7%89%A9"><span class="octicon octicon-link"></span></a>登記貨物</h5>
+
+<p>post <code>/api/v1/orders</code><br>
+接收參數:  </p>
+
+<pre><code>{
+    'tid': '29gj20g',
+    'phone': '+853xxxxxxx',
+    'CategoryId': 1,
+    'LocationId': 1,
+    'remark': 'hello world'
+}
+</code></pre>
 
 <h3>
 <a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
